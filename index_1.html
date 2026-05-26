@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5-Minuten Selbsttest · Mandy Meissner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --cream:      #FAF8F4;
+  --warm-white: #FDFBF8;
+  --beige:      #EDE7DC;
+  --blush:      #E5D3C0;
+  --gold:       #B5906A;
+  --gold-light: #D4B896;
+  --espresso:   #3A2A1D;
+  --brown:      #6B4F38;
+  --text:       #3A2A1D;
+  --muted:      #8A7060;
+  --border:     rgba(181,144,106,0.22);
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-left { display: flex; flex-direction: column; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  display: block; height: 1px; width: 28px;
+  background: var(--gold-light);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  line-height: 1.18;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 8px;
+}
+h1 em { font-style: italic; color: var(--brown); }
+
+.h1-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.55;
+}
+
+.intro-text {
+  font-size: 0.94rem;
+  line-height: 1.85;
+  color: var(--brown);
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+.intro-text strong { font-weight: 500; color: var(--espresso); }
+
+/* CTA block */
+.cta-card {
+  background: var(--espresso);
+  border-radius: 14px;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(181,144,106,0.18) 0%, transparent 60%);
+}
+.cta-card > * { position: relative; z-index: 1; }
+.cta-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blush);
+  margin-bottom: 10px;
+  display: block;
+}
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--warm-white);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.cta-title em { font-style: italic; color: var(--gold-light); }
+.btn-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--warm-white);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 6px;
+  transition: background 0.25s, transform 0.2s;
+  border: none; cursor: pointer;
+}
+.btn-cta:hover { background: var(--brown); transform: translateY(-2px); }
+.cta-note {
+  font-size: 0.76rem;
+  color: rgba(253,251,248,0.45);
+  margin-top: 12px;
+}
+
+/* ── RIGHT SIDE ── */
+.hero-right { position: relative; }
+
+.preview-wrap {
+  position: relative;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 32px 80px rgba(58,42,29,0.09), 0 4px 16px rgba(58,42,29,0.04);
+}
+
+/* floating badge */
+.float-badge {
+  position: absolute;
+  top: -18px; left: 32px;
+  background: var(--gold);
+  color: var(--warm-white);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.preview-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+.preview-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+.preview-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--espresso);
+  line-height: 1.3;
+  font-weight: 400;
+}
+.preview-title em { font-style: italic; color: var(--brown); }
+
+/* Mini quiz preview */
+.q-preview { margin-bottom: 16px; }
+.q-preview:last-child { margin-bottom: 0; }
+.q-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--espresso);
+  margin-bottom: 8px;
+}
+.q-options { display: flex; flex-direction: column; gap: 5px; }
+.q-opt {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.q-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid var(--border);
+  flex-shrink: 0;
+}
+.q-opt.active .q-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.q-opt.active { color: var(--brown); font-style: normal; font-weight: 500; }
+
+.preview-divider { height: 1px; background: var(--border); margin: 18px 0; }
+
+.result-preview {
+  background: var(--beige);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.result-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  display: block;
+}
+.result-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--espresso);
+  line-height: 1.6;
+}
+
+/* decorative circles */
+.deco-1 {
+  position: absolute;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: var(--blush);
+  opacity: 0.35;
+  top: -40px; right: -40px;
+  z-index: -1;
+}
+.deco-2 {
+  position: absolute;
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--gold-light);
+  opacity: 0.25;
+  bottom: -20px; left: -20px;
+  z-index: -1;
+}
+
+/* ── STRIPS ── */
+.strip {
+  position: relative; z-index: 1;
+  background: var(--beige);
+  padding: 72px 40px;
+}
+.strip-inner {
+  max-width: 960px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.strip h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: var(--espresso);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.strip h2 em { font-style: italic; color: var(--brown); }
+.strip p {
+  font-size: 0.94rem;
+  color: var(--muted);
+  line-height: 1.85;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+/* ── FOR WHOM ── */
+.whom {
+  position: relative; z-index: 1;
+  padding: 80px 40px;
+}
+.whom-inner { max-width: 960px; margin: 0 auto; }
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+.whom h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 48px;
+  line-height: 1.3;
+}
+.whom h2 em { font-style: italic; color: var(--brown); }
+.whom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.whom-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.whom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(58,42,29,0.07);
+}
+.whom-icon { font-size: 1.4rem; margin-bottom: 14px; }
+.whom-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--espresso);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.whom-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.75; }
+
+/* ── WHAT YOU GET ── */
+.what {
+  position: relative; z-index: 1;
+  background: var(--warm-white);
+  padding: 80px 40px;
+}
+.what-inner { max-width: 840px; margin: 0 auto; }
+.what h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 48px;
+  line-height: 1.3;
+}
+.what h2 em { font-style: italic; color: var(--brown); }
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--blush);
+  font-weight: 400;
+  line-height: 1;
+  padding-top: 2px;
+}
+.step h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--espresso);
+  margin-bottom: 6px;
+}
+.step p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+
+/* ── FINAL CTA ── */
+.final {
+  position: relative; z-index: 1;
+  background: var(--espresso);
+  padding: 100px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.final::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: rgba(181,144,106,0.08);
+  top: -200px; right: -100px;
+}
+.final::after {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(181,144,106,0.06);
+  bottom: -100px; left: -60px;
+}
+.final > * { position: relative; z-index: 1; }
+.final .eyebrow { color: var(--gold-light); justify-content: center; margin-bottom: 24px; }
+.final .eyebrow::before, .final .eyebrow::after { background: rgba(181,144,106,0.4); }
+.final h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  color: var(--warm-white);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.final h2 em { font-style: italic; color: var(--gold-light); }
+.final p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: rgba(253,251,248,0.6);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.75;
+}
+.final-note {
+  font-size: 0.78rem;
+  color: rgba(253,251,248,0.35);
+  margin-top: 16px;
+  font-style: normal;
+  font-family: 'Jost', sans-serif;
+}
+
+/* ── SIGNATURE ── */
+.signature {
+  position: relative; z-index: 1;
+  padding: 56px 40px;
+  text-align: center;
+  background: var(--cream);
+}
+.sig-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--espresso);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.sig-handle {
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim { opacity: 0; }
+.anim.visible { animation: fadeUp 0.7s ease forwards; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.22s; }
+.delay-3 { animation-delay: 0.34s; }
+.delay-4 { animation-delay: 0.46s; }
+.delay-5 { animation-delay: 0.58s; }
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+.float-card { animation: floatCard 6s ease-in-out infinite; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding: 48px 24px 64px; gap: 48px; min-height: auto; }
+  .whom-grid { grid-template-columns: 1fr; }
+  .strip, .whom, .what, .final, .signature { padding-left: 24px; padding-right: 24px; }
+  .what-inner { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow anim">Für dich — kostenlos</div>
+    <h1 class="anim delay-1">
+      Warum fühle ich mich als Mama so <em>leer</em>,<br>obwohl ich alles habe?
+    </h1>
+    <p class="h1-sub anim delay-2">5-Minuten Selbsttest · kostenlos & ohne Anmeldezwang</p>
+    <p class="intro-text anim delay-3">
+      Die letzten Jahre waren voll. Voller Alltag, Verantwortung, Verpflichtungen.<br>
+      Und jetzt, wo mehr Zeit entsteht — weißt du gar nicht, <strong>was du mit dir anfangen sollst</strong>?<br><br>
+      Dieser Test hilft dir zu verstehen, was gerade wirklich bei dir los ist — und warum sich das so anfühlt.
+    </p>
+    <div class="cta-card anim delay-4">
+      <span class="cta-label">Dein kostenloser Selbsttest</span>
+      <div class="cta-title">5 Fragen. 5 Minuten.<br><em>Und echte Klarheit darüber, wo du gerade stehst.</em></div>
+      <a href="https://mandymeissner22.systeme.io/b627cdca" target="_blank" class="btn-cta">
+        Jetzt Selbsttest starten →
+      </a>
+      <p class="cta-note">Kostenlos · Sofortiger Zugang · Kein Druck</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="deco-1"></div>
+    <div class="deco-2"></div>
+    <div class="preview-wrap float-card anim delay-2">
+      <span class="float-badge">Vorschau</span>
+      <div class="preview-header">
+        <span class="preview-tag">5-Minuten Selbsttest</span>
+        <div class="preview-title">Warum fühle ich mich<br>so <em>leer</em>?</div>
+      </div>
+
+      <div class="q-preview">
+        <div class="q-text">Wenn du zur Ruhe kommst — was passiert wirklich?</div>
+        <div class="q-options">
+          <div class="q-opt"><div class="q-dot"></div><span>Ich fühle mich ruhig und zufrieden</span></div>
+          <div class="q-opt"><div class="q-dot"></div><span>Ich denke viel nach, aber es ist noch okay</span></div>
+          <div class="q-opt active"><div class="q-dot"></div><span>Mein Kopf hört nicht auf — Gedanken, Leere</span></div>
+        </div>
+      </div>
+
+      <div class="preview-divider"></div>
+
+      <div class="q-preview">
+        <div class="q-text">Wie stark ist das Gefühl, dass da noch mehr sein könnte?</div>
+        <div class="q-options">
+          <div class="q-opt"><div class="q-dot"></div><span>Kaum</span></div>
+          <div class="q-opt active"><div class="q-dot"></div><span>Immer mal wieder</span></div>
+          <div class="q-opt"><div class="q-dot"></div><span>Es lässt mich nicht mehr los</span></div>
+        </div>
+      </div>
+
+      <div class="preview-divider"></div>
+
+      <div class="result-preview">
+        <span class="result-label">Deine Auswertung</span>
+        <div class="result-text">
+          „Du spürst, dass dein Leben gerade nicht mehr ganz passt — und das ist der erste ehrliche Schritt."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ RECOGNITION STRIP ════ -->
+<div class="strip">
+  <div class="strip-inner">
+    <h2 class="anim">Kennst du <em>dieses Gefühl</em>?</h2>
+    <p class="anim delay-1">
+      Du hast funktioniert. Du hast gegeben. Für alle. Und jetzt sitzt du da — und irgendwie weißt du nicht,
+      wer du eigentlich noch bist, wenn du nicht gerade Mama, Partnerin oder Kollegin bist.
+      <br><br>
+      Das ist kein Schwäche. Das ist ein Signal. Und dieser Test hilft dir zu verstehen, was es dir sagen will.
+    </p>
+    <a href="https://mandymeissner22.systeme.io/b627cdca" target="_blank" class="btn-cta anim delay-2">
+      Ja, ich mache den Selbsttest →
+    </a>
+  </div>
+</div>
+
+<!-- ════ FOR WHOM ════ -->
+<section class="whom">
+  <div class="whom-inner">
+    <span class="section-label anim">Für wen ist das?</span>
+    <h2 class="anim delay-1">Dieser Test ist für dich, wenn du <em>eines davon</em> kennst</h2>
+    <div class="whom-grid">
+      <div class="whom-card anim delay-1">
+        <div class="whom-icon">🌫️</div>
+        <h3>Du funktionierst — aber lebst du?</h3>
+        <p>Täglich erledigen, spuren, geben. Aber innerlich ist da eine Leere, die du schwer in Worte fassen kannst.</p>
+      </div>
+      <div class="whom-card anim delay-2">
+        <div class="whom-icon">⏳</div>
+        <h3>Die Kinder werden größer — und du weißt nicht wohin</h3>
+        <p>Plötzlich ist mehr Zeit da. Aber statt Erleichterung fühlst du Orientierungslosigkeit.</p>
+      </div>
+      <div class="whom-card anim delay-3">
+        <div class="whom-icon">🪞</div>
+        <h3>Du kennst dich selbst kaum noch</h3>
+        <p>Deine Bedürfnisse, Wünsche und Träume — irgendwann auf dem Weg verloren gegangen.</p>
+      </div>
+      <div class="whom-card anim delay-2">
+        <div class="whom-icon">🌱</div>
+        <h3>Du spürst: da muss noch mehr sein</h3>
+        <p>Nicht laut. Nicht als Krise. Nur dieser leise, beharrliche Gedanke: „Das kann nicht alles sein."</p>
+      </div>
+      <div class="whom-card anim delay-3">
+        <div class="whom-icon">💤</div>
+        <h3>Du bist erschöpft — innerlich</h3>
+        <p>Nicht nur müde. Sondern leer. Als ob du lange für alle gegeben hast und nun nicht weißt, wie du wieder zu dir findest.</p>
+      </div>
+      <div class="whom-card anim delay-4">
+        <div class="whom-icon">✦</div>
+        <h3>Du willst wieder du selbst sein</h3>
+        <p>Nicht perfekt. Nicht anders. Nur wieder bei dir. Mit mehr Raum, Selbstwert und echtem Leben.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHAT YOU GET ════ -->
+<section class="what">
+  <div class="what-inner">
+    <span class="section-label anim">Was passiert nach dem Test?</span>
+    <h2 class="anim delay-1">In 5 Minuten zu echter <em>Klarheit</em></h2>
+    <div class="steps">
+      <div class="step anim delay-1">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Du beantwortest 5 ehrliche Fragen</h3>
+          <p>Keine richtigen oder falschen Antworten. Nur du und dein echtes inneres Erleben — gerade jetzt.</p>
+        </div>
+      </div>
+      <div class="step anim delay-2">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Du bekommst deine persönliche Auswertung</h3>
+          <p>Was gerade wirklich bei dir los ist — und warum sich das so anfühlt. Ehrlich, ruhig, ohne Drama.</p>
+        </div>
+      </div>
+      <div class="step anim delay-3">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Du entscheidest, wie es weitergeht</h3>
+          <p>Kein Druck. Keine Agenda. Nur ein nächster möglicher Schritt — wenn du magst. Alles in deinem Tempo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FINAL CTA ════ -->
+<section class="final">
+  <div class="eyebrow">Bereit?</div>
+  <h2>Du hast dir das verdient —<br><em>diesen einen Moment für dich.</em></h2>
+  <p>Fünf Minuten. Fünf Fragen. Und vielleicht der ehrlichste Blick auf dich selbst, den du seit Langem hattest.</p>
+  <a href="https://mandymeissner22.systeme.io/b627cdca" target="_blank" class="btn-cta">
+    Jetzt Selbsttest starten →
+  </a>
+  <p class="final-note">Kostenlos · Sofortiger Zugang · Kein Druck · Für dich</p>
+</section>
+
+<!-- ════ SIGNATURE ════ -->
+<div class="signature">
+  <div class="sig-name">Deine Mandy 🤍</div>
+  <div class="sig-handle">@ma.ndymeissner</div>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
